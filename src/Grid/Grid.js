@@ -18,7 +18,8 @@ export class Grid extends React.Component {
             pageSize: pageSizes[1],
             height: 0,
             scrollWidth: 0,
-            hasScrollBar: false
+            hasScrollBar: false,
+            capitalizeHeader:  typeof this.props.capitalizeHeader === 'boolean' ? this.props.capitalizeHeader : true 
         }
         this.handleHeaderClick = this.handleHeaderClick.bind(this);
         this.navigateToPage = this.navigateToPage.bind(this);
@@ -83,7 +84,7 @@ export class Grid extends React.Component {
         }
 
         return (<div className='grid-container' ref={(el) => this.gridContainer = el}>
-            <HeaderRow ref={(el) => this.Header = el} value={data.length > 0 ? data[0] : {}} handleClick={this.handleHeaderClick} sortColumn={this.state.sortColumn} sortOrder={this.state.sortOrder}/>
+            <HeaderRow ref={(el) => this.Header = el} value={data.length > 0 ? data[0] : {}} handleClick={this.handleHeaderClick} sortColumn={this.state.sortColumn} sortOrder={this.state.sortOrder} capitalizeHeader={this.state.capitalizeHeader}/>
             <div className='grid-content' style={{ height: this.state.height }} ref={(el) => this.gridContentContainer = el}>
                 <Scrollbars style={{ height: this.state.height }}>
                     <table>

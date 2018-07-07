@@ -15,7 +15,7 @@ export class HeaderRow extends React.Component {
             if (prop === this.props.sortColumn) {
                 sort = this.props.sortOrder;
             }
-            headers.push(<HeaderCell name={prop} key={prop} handleClick={this.props.handleClick} sort={sort} />)
+            headers.push(<HeaderCell name={prop} key={prop} handleClick={this.props.handleClick} sort={sort} capitalizeHeader={this.props.capitalizeHeader}/>)
         }
 
         return (
