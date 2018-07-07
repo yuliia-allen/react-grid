@@ -18,6 +18,8 @@ th.grid-header{
     background-color: lightblue;
     border-left: 1px solid lightgray;
     padding: 8px;
+    text-align: left;
+    color:#606060;
 }
 
 td.grid-cell{
@@ -28,10 +30,20 @@ td.grid-cell{
 .grid-content{
     overflow: hidden;
     overflow-y: auto;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 }
 
 .grid-content table tr:first-child td{
     border-top-width: 0px;
+}
+
+.grid-content table td:first-child{
+    border-left-width: 0px;
+}
+
+.grid-content table td:last-child{
+    border-right-width: 0px;
 }
 
 .grid-content table tr:hover{
@@ -73,11 +85,24 @@ div, ul{
     clear: both;
     position: relative;
     border: 1px solid lightgray;
+    color:#606060;
     padding-left: 8px;
     padding-right: 8px;
 }
 .grid-pager-wrap button{
     margin: 0px 4px 0px 4px;
+    background-color: transparent;
+    color: lightblue;
+    border-color: transparent;
+    cursor: pointer;
+    outline: none;
+}
+.grid-pager-wrap button:disabled{
+    color: lightgray;
+    cursor: default;
+}
+.grid-pager-wrap button:hover{
+    text-decoration: underline;
 }
 .grid-pager-wrap button:first-of-type{
     margin-left: 0px;
@@ -154,10 +179,10 @@ div, ul{
     height: 0;
     vertical-align: middle;
     margin-left: 4px;
-    margin-right: 4px;
+    margin-right: 4px;    
 }
 .arrow-down{
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
-    border-top: 5px solid #000000;
+    border-top: 5px solid #606060;
 }

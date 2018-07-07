@@ -4,6 +4,8 @@ import { pageSizes } from './Constants';
 import { HeaderRow } from './HeaderRow';
 import { Row } from './Row';
 import { Pager } from './Pager';
+import { Scrollbars } from 'react-custom-scrollbars';
+//uses https://www.npmjs.com/package/react-custom-scrollbars
 
 export class Grid extends React.Component {
     constructor(props) {
@@ -62,17 +64,10 @@ export class Grid extends React.Component {
     }
 
     componentDidMount() {
-       // $(this.gridContentContainer).nicescroll();
         let gridContentHeight = this.gridContainer.parentNode.clientHeight - this.Header.height - this.Pager.height;
-        this.setState({ height: gridContentHeight, scrollWidth: this.gridContentContainer.offsetWidth - this.gridContentContainer.clientWidth, hasScrollBar: this.hasScrollBar() });
+        this.setState({ height: gridContentHeight});
     }
 
-    componentDidUpdate(prevProps) {
-        let hasScrollBar = this.hasScrollBar();
-        if (this.state.hasScrollBar != hasScrollBar) {
-            this.setState({ hasScrollBar: hasScrollBar });
-        }
-    }
 
     render() {
         let data = this.state.data;
@@ -88,13 +83,15 @@ export class Grid extends React.Component {
         }
 
         return (<div className='grid-container' ref={(el) => this.gridContainer = el}>
-            <HeaderRow ref={(el) => this.Header = el} value={data.length > 0 ? data[0] : {}} handleClick={this.handleHeaderClick} sortColumn={this.state.sortColumn} sortOrder={this.state.sortOrder} paddingRight={this.state.hasScrollBar ? this.state.scrollWidth: 0} />
+            <HeaderRow ref={(el) => this.Header = el} value={data.length > 0 ? data[0] : {}} handleClick={this.handleHeaderClick} sortColumn={this.state.sortColumn} sortOrder={this.state.sortOrder}/>
             <div className='grid-content' style={{ height: this.state.height }} ref={(el) => this.gridContentContainer = el}>
-                <table>
-                    <tbody>
-                        {rows}
-                    </tbody>
-                </table>
+                <Scrollbars style={{ height: this.state.height }}>
+                    <table>
+                        <tbody>
+                            {rows}
+                        </tbody>
+                    </table>
+                </Scrollbars>
             </div>
             <Pager ref={(el) => this.Pager = el} total={data.length} shownFrom={showFromIndex + 1} shownTo={Math.min(showToIndex, data.length)} currentPage={this.state.currentPage} pageSize={this.state.pageSize} handleNavClick={this.navigateToPage} pageSizeOptions={pageSizes} onPageSizeChanged={this.changePageSize} />
         </div>);

@@ -20,7 +20,7 @@ export class HeaderRow extends React.Component {
 
         return (
             <div className='grid-header-wrapper' ref={(el) => this.gridHeaderWrapper = el}>
-                <div className='grid-header-content' style={{ paddingRight: this.props.paddingRight }}>
+                <div className='grid-header-content'>
                     <table>
                         <thead>
                             <tr>

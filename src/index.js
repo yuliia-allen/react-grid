@@ -17,7 +17,7 @@ function buildFakeUser() {
 }
 
 function buildFakeData() {
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < 110; i++) {
         users.push(buildFakeUser())
     }
 }
